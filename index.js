@@ -15,6 +15,9 @@ const orderRouter = require("./routes/order.route");
 app.use(express.json());
 app.use(cors());
 
+app.get("/", function (req, res) {
+  res.json({ message: "Hello world" });
+});
 app.use("/api/products", productRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
@@ -25,7 +28,7 @@ mongoose
   .connect(DATABASE_URI)
   .then(() => {
     console.log("database connected");
-    app.listen(PORT, () => {
+    app.listen(PORT || 3000, () => {
       console.log(`Server is running on ${PORT}`);
     });
   })
